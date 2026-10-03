@@ -1,0 +1,245 @@
+[gd_scene load_steps=26 format=3]
+
+[ext_resource type="Shader" path="res://assets/shaders/paper.gdshader" id="1"]
+[ext_resource type="Shader" path="res://assets/shaders/doodle_outline.gdshader" id="2"]
+[ext_resource type="PackedScene" path="res://assets/printer/hand.tscn" id="3"]
+
+[sub_resource type="StandardMaterial3D" id="s_0"]
+albedo_color = Color(0.294118, 0.294118, 0.321569, 1)
+roughness = 1.0
+specular_mode = 4
+[sub_resource type="StandardMaterial3D" id="s_1"]
+albedo_color = Color(0.388235, 0.388235, 0.431373, 1)
+roughness = 1.0
+specular_mode = 4
+[sub_resource type="StandardMaterial3D" id="s_2"]
+albedo_color = Color(0.478431, 0.478431, 0.533333, 1)
+roughness = 1.0
+specular_mode = 4
+[sub_resource type="StandardMaterial3D" id="s_3"]
+albedo_color = Color(0.329412, 0.329412, 0.368627, 1)
+roughness = 1.0
+specular_mode = 4
+[sub_resource type="StandardMaterial3D" id="s_4"]
+albedo_color = Color(0.101961, 0.101961, 0.117647, 1)
+roughness = 1.0
+specular_mode = 4
+[sub_resource type="StandardMaterial3D" id="s_5"]
+albedo_color = Color(0.949020, 0.933333, 0.886275, 1)
+roughness = 1.0
+specular_mode = 4
+[sub_resource type="StandardMaterial3D" id="s_6"]
+albedo_color = Color(0.847059, 0.862745, 0.886275, 1)
+roughness = 1.0
+specular_mode = 4
+emission_enabled = true
+emission = Color(0.780392, 0.815686, 0.874510, 1)
+emission_energy_multiplier = 0.35
+[sub_resource type="StandardMaterial3D" id="s_7"]
+albedo_color = Color(0.180392, 0.835294, 0.450980, 1)
+roughness = 1.0
+specular_mode = 4
+emission_enabled = true
+emission = Color(0.180392, 0.835294, 0.450980, 1)
+emission_energy_multiplier = 2.0
+[sub_resource type="ShaderMaterial" id="s_8"]
+shader = ExtResource("2")
+[sub_resource type="ShaderMaterial" id="s_9"]
+shader = ExtResource("1")
+shader_parameter/sway = 1.0
+[sub_resource type="BoxMesh" id="s_10"]
+size = Vector3(3.5, 0.22, 2.3)
+[sub_resource type="BoxMesh" id="s_11"]
+size = Vector3(3.4, 1.6, 2.2)
+[sub_resource type="BoxMesh" id="s_12"]
+size = Vector3(3, 0.12, 1.8)
+[sub_resource type="BoxMesh" id="s_13"]
+size = Vector3(1.9, 1.7, 0.12)
+[sub_resource type="BoxMesh" id="s_14"]
+size = Vector3(1.55, 1.35, 0.13)
+[sub_resource type="BoxMesh" id="s_15"]
+size = Vector3(0.05, 1.1, 0.02)
+[sub_resource type="BoxMesh" id="s_16"]
+size = Vector3(1.3, 1.1, 0.04)
+[sub_resource type="BoxMesh" id="s_17"]
+size = Vector3(2.2, 0.14, 0.1)
+[sub_resource type="BoxMesh" id="s_18"]
+size = Vector3(0.12, 0.12, 0.06)
+[sub_resource type="BoxMesh" id="s_19"]
+size = Vector3(0.09, 0.09, 0.06)
+[sub_resource type="BoxMesh" id="s_20"]
+size = Vector3(0.5, 0.2, 0.06)
+[sub_resource type="PlaneMesh" id="s_21"]
+size = Vector2(2, 1.9)
+subdivide_width = 32
+subdivide_depth = 48
+orientation = 2
+
+[node name="PrinterRig" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
+z_index = 80
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.9, 0.9)
+[node name="RigViewport" type="SubViewport" parent="."]
+transparent_bg = true
+own_world_3d = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+[node name="PrinterCam" type="Camera3D" parent="RigViewport"]
+position = Vector3(0, 2.7, 5.9)
+rotation = Vector3(-0.2802, 0, 0)
+fov = 60.0
+current = true
+[node name="KeyLight" type="DirectionalLight3D" parent="RigViewport"]
+rotation = Vector3(-0.959931, -0.610865, 0)
+light_energy = 1.15
+shadow_enabled = true
+[node name="FillLight" type="DirectionalLight3D" parent="RigViewport"]
+rotation = Vector3(-0.349066, 2.44346, 0)
+light_energy = 0.45
+[node name="PrinterRoot" type="Node3D" parent="RigViewport"]
+[node name="Base" type="MeshInstance3D" parent="RigViewport/PrinterRoot"]
+mesh = SubResource("s_10")
+material_override = SubResource("s_4")
+position = Vector3(0, 0.11, 0)
+[node name="BodyOutline" type="MeshInstance3D" parent="RigViewport/PrinterRoot"]
+mesh = SubResource("s_11")
+material_override = SubResource("s_8")
+position = Vector3(0, 0.8, 0)
+scale = Vector3(1.026, 1.056, 1.041)
+[node name="Body" type="MeshInstance3D" parent="RigViewport/PrinterRoot"]
+mesh = SubResource("s_11")
+material_override = SubResource("s_0")
+position = Vector3(0, 0.8, 0)
+[node name="LidOutline" type="MeshInstance3D" parent="RigViewport/PrinterRoot"]
+mesh = SubResource("s_12")
+material_override = SubResource("s_8")
+position = Vector3(0, 1.66, -0.1)
+scale = Vector3(1.03, 1.75, 1.05)
+[node name="Lid" type="MeshInstance3D" parent="RigViewport/PrinterRoot"]
+mesh = SubResource("s_12")
+material_override = SubResource("s_1")
+position = Vector3(0, 1.66, -0.1)
+[node name="Tray" type="Node3D" parent="RigViewport/PrinterRoot"]
+position = Vector3(0, 2.25, -0.95)
+rotation = Vector3(-0.22, 0, 0)
+[node name="TrayOutline" type="MeshInstance3D" parent="RigViewport/PrinterRoot/Tray"]
+mesh = SubResource("s_13")
+material_override = SubResource("s_8")
+position = Vector3(0, 0, 0)
+scale = Vector3(1.047, 1.053, 1.75)
+[node name="TrayPlate" type="MeshInstance3D" parent="RigViewport/PrinterRoot/Tray"]
+mesh = SubResource("s_13")
+material_override = SubResource("s_2")
+position = Vector3(0, 0, 0)
+[node name="TrayInner" type="MeshInstance3D" parent="RigViewport/PrinterRoot/Tray"]
+mesh = SubResource("s_14")
+material_override = SubResource("s_3")
+position = Vector3(0, 0, 0.008)
+[node name="Groove0" type="MeshInstance3D" parent="RigViewport/PrinterRoot/Tray"]
+mesh = SubResource("s_15")
+material_override = SubResource("s_4")
+position = Vector3(-0.5, 0, 0.08)
+[node name="Groove1" type="MeshInstance3D" parent="RigViewport/PrinterRoot/Tray"]
+mesh = SubResource("s_15")
+material_override = SubResource("s_4")
+position = Vector3(-0.3, 0, 0.08)
+[node name="Groove2" type="MeshInstance3D" parent="RigViewport/PrinterRoot/Tray"]
+mesh = SubResource("s_15")
+material_override = SubResource("s_4")
+position = Vector3(-0.1, 0, 0.08)
+[node name="Groove3" type="MeshInstance3D" parent="RigViewport/PrinterRoot/Tray"]
+mesh = SubResource("s_15")
+material_override = SubResource("s_4")
+position = Vector3(0.1, 0, 0.08)
+[node name="Groove4" type="MeshInstance3D" parent="RigViewport/PrinterRoot/Tray"]
+mesh = SubResource("s_15")
+material_override = SubResource("s_4")
+position = Vector3(0.3, 0, 0.08)
+[node name="Groove5" type="MeshInstance3D" parent="RigViewport/PrinterRoot/Tray"]
+mesh = SubResource("s_15")
+material_override = SubResource("s_4")
+position = Vector3(0.5, 0, 0.08)
+[node name="LoadedSheet" type="MeshInstance3D" parent="RigViewport/PrinterRoot/Tray"]
+mesh = SubResource("s_16")
+material_override = SubResource("s_5")
+position = Vector3(0, 0.5, 0.11)
+[node name="PanelBack" type="MeshInstance3D" parent="RigViewport/PrinterRoot"]
+mesh = SubResource("s_17")
+material_override = SubResource("s_4")
+position = Vector3(0, 0.72, 1.1)
+[node name="LED" type="MeshInstance3D" parent="RigViewport/PrinterRoot"]
+mesh = SubResource("s_18")
+material_override = SubResource("s_7")
+position = Vector3(0.1, 1.05, 1.1)
+[node name="PBtn0" type="MeshInstance3D" parent="RigViewport/PrinterRoot"]
+mesh = SubResource("s_19")
+material_override = SubResource("s_1")
+position = Vector3(0.28, 1.05, 1.1)
+[node name="PBtn1" type="MeshInstance3D" parent="RigViewport/PrinterRoot"]
+mesh = SubResource("s_19")
+material_override = SubResource("s_1")
+position = Vector3(0.42, 1.05, 1.1)
+[node name="PBtn2" type="MeshInstance3D" parent="RigViewport/PrinterRoot"]
+mesh = SubResource("s_19")
+material_override = SubResource("s_1")
+position = Vector3(0.56, 1.05, 1.1)
+[node name="PBtn3" type="MeshInstance3D" parent="RigViewport/PrinterRoot"]
+mesh = SubResource("s_19")
+material_override = SubResource("s_1")
+position = Vector3(0.7, 1.05, 1.1)
+[node name="ScreenOutline" type="MeshInstance3D" parent="RigViewport/PrinterRoot"]
+mesh = SubResource("s_20")
+material_override = SubResource("s_8")
+position = Vector3(1.1, 1.05, 1.1)
+scale = Vector3(1.18, 1.45, 2.5)
+[node name="Screen" type="MeshInstance3D" parent="RigViewport/PrinterRoot"]
+mesh = SubResource("s_20")
+material_override = SubResource("s_6")
+position = Vector3(1.1, 1.05, 1.1)
+[node name="PaperHolder" type="Node3D" parent="RigViewport/PrinterRoot"]
+position = Vector3(0, 0.72, 1.13)
+rotation = Vector3(-0.1, 0, 0)
+scale = Vector3(1, 0.05, 1)
+[node name="PaperSheet" type="MeshInstance3D" parent="RigViewport/PrinterRoot/PaperHolder"]
+mesh = SubResource("s_21")
+material_override = SubResource("s_9")
+position = Vector3(0, -0.95, 0)
+[node name="PaperL1" type="Label3D" parent="RigViewport/PrinterRoot/PaperHolder"]
+position = Vector3(0, -0.55, 0.12)
+shaded = false
+double_sided = true
+horizontal_alignment = 1
+pixel_size = 0.01
+font_size = 48
+modulate = Color(0.133333, 0.133333, 0.133333, 1)
+text = "9 + 10"
+[node name="PaperL2" type="Label3D" parent="RigViewport/PrinterRoot/PaperHolder"]
+position = Vector3(0, -1.25, 0.12)
+shaded = false
+double_sided = true
+horizontal_alignment = 1
+pixel_size = 0.01
+font_size = 72
+modulate = Color(0.690196, 0.188235, 0.188235, 1)
+text = "= 21"
+[node name="PaperLQ" type="Label3D" parent="RigViewport/PrinterRoot/PaperHolder"]
+position = Vector3(0, -1.25, 0.12)
+shaded = false
+double_sided = true
+horizontal_alignment = 1
+pixel_size = 0.01
+font_size = 72
+modulate = Color(0.333333, 0.333333, 0.400000, 1)
+text = "= ?"
+[node name="Hand" parent="RigViewport/PrinterRoot" instance=ExtResource("3")]
+visible = false
+position = Vector3(0, -2.2, 2)
+rotation = Vector3(1.2, 2.95, 0)
+scale = Vector3(1.15, 1.15, 1.15)

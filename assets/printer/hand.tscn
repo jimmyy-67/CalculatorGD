@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3]
+
+
+[sub_resource type="StandardMaterial3D" id="s_0"]
+albedo_color = Color(1.000000, 0.823529, 0.247059, 1)
+roughness = 1.0
+specular_mode = 4
+[sub_resource type="StandardMaterial3D" id="s_1"]
+albedo_color = Color(0.941176, 0.705882, 0.160784, 1)
+roughness = 1.0
+specular_mode = 4
+[sub_resource type="BoxMesh" id="s_2"]
+size = Vector3(0.34, 0.4, 0.2)
+[sub_resource type="BoxMesh" id="s_3"]
+size = Vector3(0.26, 0.62, 0.18)
+[sub_resource type="BoxMesh" id="s_4"]
+size = Vector3(0.07, 0.16, 0.15)
+[sub_resource type="BoxMesh" id="s_5"]
+size = Vector3(0.07, 0.14, 0.13)
+[sub_resource type="BoxMesh" id="s_6"]
+size = Vector3(0.09, 0.2, 0.12)
+[sub_resource type="BoxMesh" id="s_7"]
+size = Vector3(0.08, 0.5, 0.13)
+
+[node name="Hand" type="Node3D"]
+visible = false
+position = Vector3(0, -2.2, 2)
+rotation = Vector3(1.2, 2.95, 0)
+scale = Vector3(1.15, 1.15, 1.15)
+[node name="Palm" type="MeshInstance3D" parent="."]
+mesh = SubResource("s_2")
+material_override = SubResource("s_0")
+position = Vector3(0, 0, 0)
+[node name="Forearm" type="MeshInstance3D" parent="."]
+mesh = SubResource("s_3")
+material_override = SubResource("s_0")
+position = Vector3(0, -0.55, -0.03)
+[node name="Finger0A" type="MeshInstance3D" parent="."]
+mesh = SubResource("s_4")
+material_override = SubResource("s_1")
+position = Vector3(-0.115, 0.24, 0.03)
+[node name="Finger0B" type="MeshInstance3D" parent="."]
+mesh = SubResource("s_5")
+material_override = SubResource("s_1")
+position = Vector3(-0.115, 0.28, 0.11)
+[node name="Finger1A" type="MeshInstance3D" parent="."]
+mesh = SubResource("s_4")
+material_override = SubResource("s_1")
+position = Vector3(-0.037, 0.24, 0.03)
+[node name="Finger1B" type="MeshInstance3D" parent="."]
+mesh = SubResource("s_5")
+material_override = SubResource("s_1")
+position = Vector3(-0.037, 0.28, 0.11)
+[node name="Finger2A" type="MeshInstance3D" parent="."]
+mesh = SubResource("s_4")
+material_override = SubResource("s_1")
+position = Vector3(0.041, 0.24, 0.03)
+[node name="Finger2B" type="MeshInstance3D" parent="."]
+mesh = SubResource("s_5")
+material_override = SubResource("s_1")
+position = Vector3(0.041, 0.28, 0.11)
+[node name="Thumb" type="MeshInstance3D" parent="."]
+mesh = SubResource("s_6")
+material_override = SubResource("s_0")
+position = Vector3(0.2, 0.02, 0.06)
+rotation = Vector3(0, 0, -0.7)
+[node name="Index" type="MeshInstance3D" parent="."]
+mesh = SubResource("s_7")
+material_override = SubResource("s_0")
+position = Vector3(0.115, 0.42, 0.02)
+rotation = Vector3(0.12, 0, 0)
